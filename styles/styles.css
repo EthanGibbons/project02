@@ -1,0 +1,161 @@
+/*forms coloring and styling the h1*/
+h1 {background-color: rgb(2, 24, 24);
+    color: rgb(254, 253, 253);
+    text-align: center;
+    padding: 15px;
+    text-transform: uppercase;
+    border: solid rgb(21, 37, 1);
+}
+/*forms coloring and styling the h2*/
+h2{background-color: cadetblue;
+color: rgb(38, 17, 17);
+padding: 18px;
+margin: 25px;
+border: solid rgb(6, 54, 6);
+}
+#jobreference {color: rgb(4, 81, 67);
+               font-style: normal;
+}
+
+/*forms coloring and styling of body*/
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: white;
+    color: black;
+    padding-left: 10em;
+    padding-right: 10em;
+    text-align: left; /*layout of the body border*/
+    background-color: #f1fafa;
+}
+
+#left_align{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: white;
+    color: black;
+    padding-left: 10em;
+    padding-right: 10em;
+    text-align: left; 
+    background-color: #f4fefe;
+}
+
+#index {
+    background-image: url('images/background.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/*forms making the apply/reset the button styling*/
+button{
+    background-color: darkcyan;
+    border: 5px double #cccccc;
+    padding: 10px;
+    color: antiquewhite;   
+}
+
+aside{margin: 20px;}
+/*forms using aside tags to bring hover effect*/
+aside :hover{background-color: rgb(43, 226, 226);}
+
+#introduction {
+   display: flex;
+   justify-content: space-between;
+   border: 2px solid black;
+   background-color: cadetblue;
+}
+
+#logo {
+    display: grid;
+}
+
+/*forms using this code the fill boxes will become more space*/
+input {
+    margin: 10px;
+    padding: 10px;
+}
+
+#button :hover{ background-color: rgb(3, 60, 62);
+                color: rgb(8, 52, 8);
+
+}
+
+h3 {
+    text-decoration: underline;
+}
+
+h5 {
+    font-family: Arial;
+}
+section{
+    border: 2px solid gray;
+    padding: 1em;
+}
+
+nav  {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    border: 2px solid gray;
+    padding: 1em;
+    background-color: #1976d2; /* Changed to a blue shade */
+    color: #fff; /* White text for better contrast */
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #1565c0; /* Darker blue on hover */
+}
+
+a {
+    text-decoration: none;
+}
+
+table {
+    table-layout: auto;
+    border: 2px solid gray;
+    padding: 1em;
+    background-color: whitesmoke;
+}
+/*Code Below is George Salib's - 101613603*/
+/* Float the figure to the right */
+figure {
+    float: right;
+    margin: 0 0 1em 1em; /* spacing from content */
+  }
+  
+  /* Style the image with shorthand border */
+  figure img {
+    border: 3px solid #333; /* black border */
+    width: 200px; /* optional width */
+  }
+
+  /* Center the table */
+section table {
+    margin: 0 auto; /* horizontally centers the table */
+    border-collapse: collapse;
+    width: 80%; /* optional */
+  }
+  
+  /* Bold headings */
+  section table th {
+    font-weight: bold;
+    background-color: #dddddd; /* light gray background */
+    padding: 10px;
+  }
+  
+  /* Background color for cells with hover effect */
+  section table td {
+    background-color: #f0f8ff; 
+    padding: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  section table td:hover {
+    background-color: #cce7ff; /* slightly darker on hover */
+  }
+
+/* Student ID aligned to the right - wasnt able to move dot points to right side with ids. */ 
+    .student-id {
+    text-align: right;
+    font-weight: bold;
+  }
