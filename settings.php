@@ -2,7 +2,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database ="User_10"; // Replace with your actual DB name
+$database ="it_rizz"; //  DB name
 
 $conn = mysqli_connect($host, $username, $password, $database);
 

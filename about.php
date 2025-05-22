@@ -4,10 +4,9 @@
 	Meta tags + Link to style sheet + Title of Page.
 	-->
 <head>
-	<meta charset="utf-8">
-	<meta name="description"	content="About Page">
-	<meta name="keywords"		content="HTML, CSS">
-	 <meta name="author" content= "IT_RIZZ">
+	<?php
+        include 'header.inc';
+        ?>
 	<title>About</title>
     <link rel="stylesheet" href="styles/styles.css">
 	
