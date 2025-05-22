@@ -159,3 +159,7 @@ section table {
     text-align: right;
     font-weight: bold;
   }
+
+  #EOITable {
+    font-size: 0.9em;
+  }
