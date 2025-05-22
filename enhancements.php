@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      $input_password = trim($_POST["password"]);
      
       // Sql for query to check if username and password are matching with the database
-     $stmt +$conn ("SELECT users, password FROM users WHERE username = ?");
+     $stmt->$conn ("SELECT users, password FROM users WHERE username = ?");
      $stmt->bind_param("s", $input_username);
      $stmt->execute();
      $result = $stmt->get_result();

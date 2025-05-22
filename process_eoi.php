@@ -1,4 +1,5 @@
 <?php
+
 // Prevent direct access to this page without POST data
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     header("Location: apply.php");
@@ -127,9 +128,9 @@ if (count($errors) > 0) {
 
 // Database connection details (STILL NEED REAL CREDENTIALS)
 $host = 'localhost';
-$dbname = 'your_database_name';
-$username = 'your_db_user';
-$password = 'your_db_pass';
+$dbname = 'it_rizz';
+$username = 'root';
+$password = '';
 
 // Create connection
 $conn = new mysqli($host, $username, $password, $dbname);
