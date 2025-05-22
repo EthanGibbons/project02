@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta name="description"	content="About Page">
 	<meta name="keywords"		content="HTML, CSS">
-	<meta name="author"			content="George Salib">
+	 <meta name="author" content= "IT_RIZZ">
 	<title>About</title>
     <link rel="stylesheet" href="styles/styles.css">
 	

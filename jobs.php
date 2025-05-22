@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="Position Description">
-        <meta name="keywords" content="HTML, Doctype, Head, Body, Meta, Paragraph, Headings, Strong, Emphasis">
-        <meta name="author" content="Ethan Gibbons">
+       <?php
+        include 'header.inc';
+        ?>
         <title>Position Description</title>
        <link rel="stylesheet" href="styles/styles.css">
     </head>

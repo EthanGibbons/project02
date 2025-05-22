@@ -4,10 +4,9 @@
 	Meta tags + Link to style sheet + Title of Page.
 	-->
 	<head>
-	<meta charset="utf-8">
-	<meta name="description"	content="Home Page of Our Website">
-	<meta name="keywords"		content="HTML, CSS">
-	<meta name="author"			content="George Salib">
+	<?php
+        include 'header.inc';
+        ?>
     <link rel="stylesheet" href="styles/styles.css">
 	<title>Home Page</title>
 	</head>
