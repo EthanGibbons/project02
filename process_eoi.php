@@ -1,4 +1,7 @@
 <?php
+// Import database connection settings
+require_once("settings.php");
+
 // Prevent direct access to this page without POST data
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     header("Location: apply.php");
@@ -121,23 +124,10 @@ if (count($errors) > 0) {
     exit();
 }
 
-// Database connection details (STILL NEED REAL CREDENTIALS)
-$host = 'localhost';
-$dbname = 'your_database_name';
-$username = 'your_db_user';
-$password = 'your_db_pass';
-
-// Create connection
-$conn = new mysqli($host, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
 // Create EOI table if it doesn't exist
 $sqlCreateTable = "CREATE TABLE IF NOT EXISTS EOI (
     EOInumber INT AUTO_INCREMENT PRIMARY KEY,
+    Status ENUM('New', 'Current', 'Final') DEFAULT 'New',
     JobReference VARCHAR(50) NOT NULL,
     FirstName VARCHAR(20) NOT NULL,
     LastName VARCHAR(20) NOT NULL,
@@ -151,6 +141,7 @@ $sqlCreateTable = "CREATE TABLE IF NOT EXISTS EOI (
     Skills TEXT,
     OtherSkills TEXT,
     DateSubmitted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
 )";
 if (!$conn->query($sqlCreateTable)) {
     die("Error creating table: " . $conn->error);
@@ -160,17 +151,19 @@ if (!$conn->query($sqlCreateTable)) {
 $skillsForDB = implode(", ", $requiredSkillsArr);
 
 // Prepare insert statement
-$stmt = $conn->prepare("INSERT INTO EOI (JobReference, FirstName, LastName, DateOfBirth, StreetAddress, Suburb, State, Postcode, Email, PhoneNumber, Skills, OtherSkills) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("ssssssssssss", $jobReferenceNumber, $firstName, $lastName, $dateOfBirth, $streetAddress, $Suburb, $State, $postCode, $Email, $phoneNumber, $skillsForDB, $otherSkills);
+$stmt = $conn->prepare("INSERT INTO EOI (Status, JobReference, FirstName, LastName, DateOfBirth, StreetAddress, Suburb, State, Postcode, Email, PhoneNumber, Skills, OtherSkills) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$Status = "New"; // Default status
+$stmt->bind_param("sssssssssssss", $Status, $jobReferenceNumber, $firstName, $lastName, $dateOfBirth, $streetAddress, $Suburb, $State, $postCode, $Email, $phoneNumber, $skillsForDB, $otherSkills);
 
 if ($stmt->execute()) {
     // Get the unique EOInumber (auto-increment ID) - UNSURE IF THIS WORKS
     $insertedId = $conn->insert_id;
     echo "<h2>Thank you for your application!</h2>";
     echo "<p>Your Expression of Interest has been recorded. Your EOInumber is <strong>" . $insertedId . "</strong>.</p>";
+    echo "<p><a href='apply.php'>Go Back</a></p>";
 } else {
     echo "Error: " . htmlspecialchars($stmt->error);
-}
+}   
 
 // Close connections
 $stmt->close();
