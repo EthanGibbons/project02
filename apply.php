@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <?php
-        include 'header.inc';
-        ?>
-		<hr>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="job application">
+  <meta name="keywords" content="HTML, Doctype, Head, Body, Meta, Paragraph, Headings, Strong, Emphasis">
+  <meta name="author" content= "Kevin Varghese">
   <link rel="stylesheet" href="styles/styles.css">
   <title>JOB APPLICATION</title>
 </head>
@@ -17,7 +18,7 @@
   <h1>JOB APPLICATION</h1>
   <h2>FILL THE REQUIRED FIELDS FOR JOB APPLICATION</h2>
 
-  <form action="https://mercury.swin.edu.au/it000000/formtest.php" method="post"> 
+  <form action="process_eoi.php" method="post" novalidate="novalidate">
 
     <label for="jobreference">JOB REFERENCE</label>
     <select name="number" id="jobreference" required>
@@ -37,6 +38,12 @@
 
       <p><label for="dob">Date of birth</label>
         <input type="date" name="dob" id="dob" required></p>
+      <fieldset>
+        <legend>Gender</legend>
+        <label><input type="radio" name="gender" value="Male" required> Male</label>
+        <label><input type="radio" name="gender" value="Female"> Female</label>
+        <label><input type="radio" name="gender" value="Other"> Other</label>
+      </fieldset>
 
       <p><label for="streetaddress">Street Address</label><br>
         <input type="text" name="streetaddress" id="streetaddress" maxlength="40" required></p>

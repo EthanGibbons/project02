@@ -1,19 +1,18 @@
-<html>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <?php
-        include 'header.inc';
-        ?>
-        <link rel="stylesheet" href="styles/styles.css">
-        <title>Login</title>
-    <
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <?php
+    include 'header.inc';
+    ?>
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Login</title>
+</head>
 <body>
 <?php
 session_start();
 require_once("settings.php");
 ?>
-    <section id ="login">
+    <section id="login">
     <h1>Login</h1>
     <?php 
      if (isset($_SESSION['error'])) {
