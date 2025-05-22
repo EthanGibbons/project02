@@ -95,7 +95,7 @@ if (!preg_match("/^\d{4}$/", $postCode)) {
 
     if (isset($statePostcodePatterns[$State])) {
         if (!preg_match($statePostcodePatterns[$State], $postCode)) {
-            $errors[] = "Postcode does not match the selected state.";
+            #$errors[] = "Postcode does not match the selected state.";
         }
     } else {
         $errors[] = "Invalid state selected for postcode validation.";

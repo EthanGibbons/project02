@@ -22,8 +22,9 @@
 
         <?php
             require_once("settings.php");
+            
 
-            $query = "SELECT * FROM jobs_";
+            $query = "SELECT * FROM jobs";
             $result = mysqli_query($conn, $query);
             if ($result) {
                 while ($row = mysqli_fetch_assoc($result)) {
