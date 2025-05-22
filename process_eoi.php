@@ -17,17 +17,18 @@ function sanitise_input($data) {
 }
 
 // Sanitize inputs
-$jobReferenceNumber = sanitise_input($_POST["number"] ?? '');
-$firstName = sanitise_input($_POST["Firstname"] ?? '');
-$lastName = sanitise_input($_POST["Lastname"] ?? '');
-$dateOfBirth = sanitise_input($_POST["dob"] ?? '');
-$streetAddress = sanitise_input($_POST["streetaddress"] ?? '');
-$Suburb = sanitise_input($_POST["suburb"] ?? '');
-$State = sanitise_input($_POST["state"] ?? '');
-$postCode = sanitise_input($_POST["postcode"] ?? '');
-$Email = sanitise_input($_POST["email"] ?? '');
-$phoneNumber = sanitise_input($_POST["phonenumber"] ?? '');
-$otherSkills = sanitise_input($_POST["description"] ?? '');
+//$jobReferenceNumber = sanitise_input($_POST["number"] ?? '');  - test version works even if no input
+$jobReferenceNumber = sanitise_input($_POST["number"]);
+$firstName = sanitise_input($_POST["Firstname"]);
+$lastName = sanitise_input($_POST["Lastname"]);
+$dateOfBirth = sanitise_input($_POST["dob"]);
+$streetAddress = sanitise_input($_POST["streetaddress"]);
+$Suburb = sanitise_input($_POST["suburb"]);
+$State = sanitise_input($_POST["state"]);
+$postCode = sanitise_input($_POST["postcode"]);
+$Email = sanitise_input($_POST["email"]);
+$phoneNumber = sanitise_input($_POST["phonenumber"]);
+$otherSkills = sanitise_input($_POST["description"]);
 
 // Collect skills from individual checkbox inputs
 $skillsList = [
@@ -50,7 +51,7 @@ foreach ($skillsList as $skill) {
 $errors = [];
 
 // Validate required fields
-if (empty($jobReferenceNumber)) $errors[] = "Job reference is required.";
+if (empty($jobReferenceNumber)) $errors[] = "Job reference is required."; //error for jobreference still working it out
 
 if (empty($firstName) || !preg_match("/^[a-zA-Z]{1,20}$/", $firstName)) {
     $errors[] = "First name is required, max 20 alpha characters.";
@@ -80,7 +81,7 @@ if (empty($State) || !in_array($State, $validStates)) {
 if (!preg_match("/^\d{4}$/", $postCode)) {
     $errors[] = "Postcode must be exactly 4 digits.";
 } else {
-    // Postcode matching state logic   - THIS ISNT WORKING ASK FOR HELP FROM TUTOR
+    // Postcode matching state logic  Chatgpt generated this but doesn't work - THIS ISNT WORKING ASK FOR HELP FROM TUTOR
     $statePostcodePatterns = [
         "VIC" => "/^(3|8)\d{2}$/",
         "NSW" => "/^(1|2)\d{2}$/",
@@ -114,7 +115,7 @@ if (count($requiredSkillsArr) == 0) {
 }
 
 
-// If there are validation errors, display them and stop execution
+// If there are validation errors, display them and stop execution 
 if (count($errors) > 0) {
     echo "<h2>Validation Errors:</h2><ul>";
     foreach ($errors as $error) {
@@ -124,7 +125,7 @@ if (count($errors) > 0) {
     exit();
 }
 
-// Create EOI table if it doesn't exist
+// Create EOI table if it doesn't exist - chatgpt helped with this
 $sqlCreateTable = "CREATE TABLE IF NOT EXISTS EOI (
     EOInumber INT AUTO_INCREMENT PRIMARY KEY,
     Status ENUM('New', 'Current', 'Final') DEFAULT 'New',
@@ -143,7 +144,7 @@ $sqlCreateTable = "CREATE TABLE IF NOT EXISTS EOI (
     DateSubmitted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 )";
-if (!$conn->query($sqlCreateTable)) {
+if (!$conn->query($sqlCreateTable)) { 
     die("Error creating table: " . $conn->error);
 }
 
@@ -151,12 +152,12 @@ if (!$conn->query($sqlCreateTable)) {
 $skillsForDB = implode(", ", $requiredSkillsArr);
 
 // Prepare insert statement
-$stmt = $conn->prepare("INSERT INTO EOI (Status, JobReference, FirstName, LastName, DateOfBirth, StreetAddress, Suburb, State, Postcode, Email, PhoneNumber, Skills, OtherSkills) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO EOI (Status,JobReference, FirstName, LastName, DateOfBirth, StreetAddress, Suburb, State, Postcode, Email, PhoneNumber, Skills, OtherSkills) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 $Status = "New"; // Default status
 $stmt->bind_param("sssssssssssss", $Status, $jobReferenceNumber, $firstName, $lastName, $dateOfBirth, $streetAddress, $Suburb, $State, $postCode, $Email, $phoneNumber, $skillsForDB, $otherSkills);
 
 if ($stmt->execute()) {
-    // Get the unique EOInumber (auto-increment ID) - UNSURE IF THIS WORKS
+    // Get the unique EOInumber (auto-increment ID) - UNSURE IF THIS WORKS - chatgpt helped with this
     $insertedId = $conn->insert_id;
     echo "<h2>Thank you for your application!</h2>";
     echo "<p>Your Expression of Interest has been recorded. Your EOInumber is <strong>" . $insertedId . "</strong>.</p>";
