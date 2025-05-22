@@ -13,7 +13,7 @@ function sanitise_input($data) {
     return $data;
 }
 
-<<<<<<< HEAD
+
 
 =======
 // Sanitize inputs

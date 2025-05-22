@@ -104,7 +104,10 @@
 
         
         <footer>
-            <h5>Tech Shield Lt &copy;</h5>
+           	<?php
+        include 'footer.inc';
+        ?>
+		
         </footer>
     </body>
 </html>
